@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>刘文刀传奇 - 放置游戏</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 成就通知区域 -->
+  <div id="achievement-notifications"></div>
+
+
+  <!-- 顶部资源栏 -->
+  <div id="top-bar">
+    <span>车前草: <span id="coins">0</span></span>
+    <span>点击效率: <span id="clickPower">1</span></span>
+    <span>自动采摘: <span id="autoRate">0</span>/秒</span>
+    <span>果子: <span id="fruits">0</span></span>
+    <span>果子产出: <span id="fruitRate">0</span>/秒</span>
+    <span>回溯次数: <span id="rebirthCount">0</span></span>
+    <span>回溯点: <span id="rebirthPoints">0</span></span>
+  </div>
+
+  <!-- 主容器 -->
+  <div id="main-container">
+    <!-- 左侧侧边栏 -->
+    <div id="sidebar">
+      <ul>
+        <li data-section="click-area" class="active">采摘</li>
+        <li data-section="upgrades">升级</li>
+        <li data-section="companions">伙伴</li>
+        <li data-section="rebirth">回溯</li>
+        <li data-section="achievements">成就</li>
+        <li data-section="save">存档</li>
+      </ul>
+    </div>
+
+    <!-- 右侧内容区 -->
+    <div id="content">
+      <!-- 点击区域 -->
+      <div id="click-area" class="section active">
+        <h2>采摘车前草</h2>
+        <button id="clickButton">采摘车前草</button>
+      </div>
+
+      <!-- 升级区域 -->
+      <div id="upgrades" class="section">
+        <h2>升级</h2>
+        <button id="upgradeClick">升级点击效率 (花费: <span id="clickCost">10</span> 车前草)</button>
+        <button id="upgradeAuto">升级自动采摘 (花费: <span id="autoCost">100</span> 车前草)</button>
+        <button id="upgradeFruit">升级果子产出 (花费: <span id="fruitCost">50</span> 果子)</button>
+      </div>
+
+      <!-- 伙伴区域 -->
+   
+    <div id="companions" class="section">
+      <h2>伙伴</h2>
+
+      <div class="companion" data-tooltip="Yestone解锁条件：无&#10;价格：1000 车前草&#10;产生果子">
+        <button id="buyYestone" disabled>Yestone</button>
+      </div>
+
+      <div class="companion" data-tooltip="Qizi解锁条件：转生2次&#10;价格：2000 车前草 + 500 果子&#10;增加采摘效率">
+        <button id="buyQizi" disabled>Qizi</button>
+      </div>
+
+      <div class="companion" data-tooltip="李华解锁条件：转生5次&#10;价格：5000 车前草 + 1000 果子&#10;待定">
+        <button id="buyLihua" disabled>李华</button>
+      </div>
+    </div>
+
+      <!-- 转生区域 -->
+      <div id="rebirth" class="section">
+        <h2>回溯</h2>
+        <button id="rebirthButton">回溯 (需要 5000 车前草 + 1000 果子)</button>
+        <div id="rebirthShop">
+          <h3>回溯商店</h3>
+          <button id="buyClickEfficiency">点击效率 +1 (花费: 1 回溯点)</button>
+          <button id="buyAutoEfficiency">自动采摘效率 +1 (花费: 2 回溯点)</button>
+          <button id="buyFruitEfficiency">果子产出效率 +1 (花费: 2 回溯点)</button>
+          <button id="buyRebirthBonus">回溯点获取 +1 (花费: 5 回溯点)</button>
+        </div>
+      </div>
+
+      <!-- 成就区域 -->
+      <div id="achievements" class="section">
+        <h2>成就</h2>
+        <ul id="achievementList"></ul>
+      </div>
+
+      <!-- 存档区域 -->
+      <div id="save" class="section">
+        <h2>存档</h2>
+        <button id="saveButton">手动保存</button>
+        <button id="resetButton">重置存档</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
