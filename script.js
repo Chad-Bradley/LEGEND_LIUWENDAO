@@ -10,10 +10,6 @@ let fruits = 0;
 let fruitRate =0;
 let fruitCost = 50;
 
-let yestoneOwned = false;
-let qiziOwned = false;
-let lihuaOwned = false;
-
 let rebirthCount = 0;
 let rebirthPoints = 0;
 let totalClicks = 0;
@@ -21,9 +17,13 @@ let totalClicks = 0;
 let friends =0;
 let saveAchievementUnlocked = false;
 
-
+let yestoneOwned = false;
 let yestoneLevel = 1;
 let yestoneUpgradeCost = 1000;
+let yestoneEverOwned = false;
+
+let qiziOwned = false;
+let lihuaOwned = false;
 // 成就系统
 const achievements = [
   {
@@ -526,7 +526,13 @@ buyYestoneButton.addEventListener('click', () => {
       coins -= 1000;
       yestoneOwned = true;
       fruitRate = 1;
-      friends += 1;
+
+      // 只在首次购买时增加 friends
+      if (!yestoneEverOwned) {
+        friends += 1;
+        yestoneEverOwned = true; // 标记为曾经拥有过
+      }
+
       updateDisplay();
     }
   } else {
@@ -578,6 +584,8 @@ rebirthButton.addEventListener('click', () => {
     rebirthCount++;
     rebirthPoints += rebirthCount;
     yestoneOwned = false;
+    yestoneLevel = 1;
+    yestoneUpgradeCost = 1000;
     qiziOwned = false;
     lihuaOwned = false;
 
@@ -777,9 +785,10 @@ function saveGame() {
     rebirthPoints,
     totalClicks,
     achievements,
+    yestoneOwned,
     yestoneLevel,
     yestoneUpgradeCost,
-    yestoneOwned,
+    yestoneEverOwned,
     qiziOwned,
     lihuaOwned,
     friends,
@@ -823,6 +832,7 @@ function loadGame() {
     qiziOwned = gameData.qiziOwned || false;
     lihuaOwned = gameData.lihuaOwned || false;
     friends = gameData.friends || 0;
+    yestoneEverOwned = gameData.yestoneEverOwned || false;
     // 恢复成就状态
     if (gameData.achievements) {
       gameData.achievements.forEach((ach, index) => {
